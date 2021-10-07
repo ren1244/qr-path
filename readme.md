@@ -11,7 +11,8 @@ PS. 填色時使用 nonzero 模式。
 以下為產生 svg 圖檔的範例
 
 ```
-import { QRPath } from './qr-path.js';
+import QRPath from 'qr-path';
+//or const QRPath = require('qr-path');
 
 let pathArray = QRPath({
     size: 4, //每列有幾行

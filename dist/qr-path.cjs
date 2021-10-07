@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * 輸入：0 跟 1 的矩陣
  * 輸出：描繪此矩陣圖形路徑的點
@@ -126,7 +128,7 @@ QRPath.prototype.getPath = function () {
     function getDir(p1, p2) {
         return p1.x === p2.x ? 'v' : 'h';
     }
-}
+};
 
 /**
  * 加入一面牆
@@ -152,7 +154,7 @@ QRPath.prototype._addWall = function (m, n, direction) {
             n: n
         },
         mid: []
-    }
+    };
     let currentIndex = this._insertToWallCollection(currentWall);
     //起始點跟先前的終點合併
     let linkedIndex = this._searchEnd(currentWall.start);
@@ -166,7 +168,7 @@ QRPath.prototype._addWall = function (m, n, direction) {
         currentIndex = this._margeWall(currentIndex, linkedIndex);
         currentWall = this.wallCollection[currentIndex];
     }
-}
+};
 
 /**
  * 插入一面牆到 this.wallCollection
@@ -180,17 +182,17 @@ QRPath.prototype._insertToWallCollection = function (wall) {
     const idx = this.wallCollection.length;
     this.wallCollection.push(wall);
     if (this.wallStartIndexDict[key1]) {
-        this.wallStartIndexDict[key1].push(idx)
+        this.wallStartIndexDict[key1].push(idx);
     } else {
         this.wallStartIndexDict[key1] = [idx];
     }
     if (this.wallEndIndexDict[key2]) {
-        this.wallEndIndexDict[key2].push(idx)
+        this.wallEndIndexDict[key2].push(idx);
     } else {
         this.wallEndIndexDict[key2] = [idx];
     }
     return idx;
-}
+};
 
 /**
  * 尋找 this.wallCollection 中的牆壁
@@ -216,7 +218,7 @@ QRPath.prototype._searchStart = function (endPoint) {
         }
     }
     return -1;
-}
+};
 
 /**
  * 尋找 this.wallCollection 中的牆壁
@@ -242,7 +244,7 @@ QRPath.prototype._searchEnd = function (startPoint) {
         }
     }
     return -1;
-}
+};
 
 /**
  * 合併 this.wallCollection 中的兩面牆壁
@@ -295,6 +297,6 @@ QRPath.prototype._margeWall = function (idx1, idx2) {
             arr.pop();
         }
     }
-}
+};
 
-export { QRPath };
+module.exports = QRPath;
