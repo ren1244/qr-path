@@ -1,5 +1,5 @@
 {
-  "name": "qr-path",
+  "name": "@ren1244/qr-path",
   "version": "1.0.0",
   "description": "qr-path 能取得能描繪出 QR Code 路徑的座標點，供後續產生 svg 或是 PostScript 等向量圖形。",
   "main": "src/qr-path.mjs",
