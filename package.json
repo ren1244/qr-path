@@ -19,6 +19,9 @@
   },
   "keywords": [],
   "license": "MIT",
+  "dependencies": {
+
+  },
   "devDependencies": {
     "rollup": "^2.58.0",
     "rollup-plugin-terser": "^7.0.2"
