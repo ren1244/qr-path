@@ -1,6 +1,6 @@
 {
   "name": "@ren1244/qr-path",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "qr-path 能取得能描繪出 QR Code 路徑的座標點，供後續產生 svg 或是 PostScript 等向量圖形。",
   "main": "src/qr-path.mjs",
   "exports": {
@@ -19,11 +19,8 @@
   },
   "keywords": [],
   "license": "MIT",
-  "dependencies": {
-
-  },
   "devDependencies": {
-    "rollup": "^2.58.0",
-    "rollup-plugin-terser": "^7.0.2"
+    "@rollup/plugin-terser": "^0.4.4",
+    "rollup": "^2.58.0"
   }
 }

@@ -1,11 +1,10 @@
-import { terser } from "rollup-plugin-terser";
+import terser from '@rollup/plugin-terser';
 export default {
     input: "src/qr-path.mjs",
     output: [
         {
             file: "dist/qr-path.cjs",
-            format: "cjs",
-            exports: "default"
+            format: "cjs"
         },
         {
             file: "dist/qr-path.min.js",

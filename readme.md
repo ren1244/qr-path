@@ -10,29 +10,30 @@ PS. 填色時使用 nonzero 模式。
 
 以下為產生 svg 圖檔的範例
 
-```
-import QRPath from 'qr-path';
-//or const QRPath = require('qr-path');
+```javascript
+import { QrPath } from 'qr-path';
+// const { QrPath } = require('qr-path');
 
-let pathArray = QRPath({
-    size: 4, //每列有幾行
-    data: [
-        1, 1, 1, 0,
-        0, 1, 0, 1,
-        1, 0, 1, 1,
-        1, 1, 0, 1
-    ] //二維矩陣資料
-});
+const isDark = (()=>{
+    const data = [
+        [0, 0, 1, 0],
+        [1, 0, 1, 1],
+        [1, 0, 0, 0],
+    ];
+    return function(x, y) {
+        return data[y][x];
+    }
+})();
+
+let pathArray = QrPath(4, 3, isDark);
 
 //從取得的路徑點產生 svg path 內容
 let dData = pathArray.map(closePath => {
-    return closePath.map((point, idx) => {
-        return `${(idx === 0 ? 'M' : 'L')}${point.x} ${point.y}`;
-    }).join('');
+    return 'M' + closePath.map(point => `${point.x} ${point.y}`).join(' L ') + ' Z';
 }).join('');
 
 //產生 svg
-let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 4 4">
+let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 4 3">
     <path d="${dData}" fill="#000000"/>
 </svg>`;
 ```
