@@ -25,6 +25,7 @@ const isDark = (()=>{
     }
 })();
 
+// 回傳: [[{x: number, y:number}, ...], ...]
 let pathArray = QrPath(4, 3, isDark);
 
 //從取得的路徑點產生 svg path 內容
@@ -37,3 +38,7 @@ let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" view
     <path d="${dData}" fill="#000000"/>
 </svg>`;
 ```
+
+## 其他
+
+如果有需要判斷回傳的點是否為凸出來的地方，設 $p_0$ 為前一個點、$p_1$ 為目前的點、$p_2$ 為下一個點、$v_1=p_1-p_0$、$v_2=p_2-p_1$ 若外積 $v_1 \times v_2$ 的 z 值為負，代表在這個點「右轉」，此時為凸出的地方。

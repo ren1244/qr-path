@@ -56,7 +56,7 @@ class PathCollection {
                 let p3 = points[i];
                 // 三點呈一線外積為零
                 if ((p1.x - p2.x) * (p3.y - p2.y) + (p1.y - p2.y) * (p3.x - p2.x) === 0) {
-                    result[k-1] = p3;
+                    result[k - 1] = p3;
                 } else {
                     result.push(p3);
                 }
@@ -122,17 +122,24 @@ class PathCollection {
 
     _put(path) {
         let idx = this.paths.length;
+        let startPoint = path.startPoint();
+        let endPoint = path.endPoint();
+        let closed = startPoint.x === endPoint.x && startPoint.y === endPoint.y;
         this.paths.push(path);
-        let sKey = PathCollection.getKey(path.startPoint());
+        let sKey = PathCollection.getKey(startPoint);
         if (this.pathStart.has(sKey)) {
             throw `pathStart[${sKey}] 已存在`;
         }
-        this.pathStart.set(sKey, idx);
-        let eKey = PathCollection.getKey(path.endPoint());
+        if (!closed) {
+            this.pathStart.set(sKey, idx);
+        }
+        let eKey = PathCollection.getKey(endPoint);
         if (this.pathEnd.has(eKey)) {
             throw `pathEnd[${eKey}] 已存在`;
         }
-        this.pathEnd.set(eKey, idx);
+        if (!closed) {
+            this.pathEnd.set(eKey, idx);
+        }
     }
 }
 
